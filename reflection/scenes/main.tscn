@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw1gk2j5qj5rj"]
+
+[ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="1_o5qli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(313, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(164, 646)
+
+[node name="Main" type="Node2D"]
+
+[node name="Plat" type="CharacterBody2D" parent="."]
+position = Vector2(156, 582)
+script = ExtResource("1_o5qli")
+
+[node name="Panel" type="Panel" parent="Plat"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -20.0
+offset_right = 156.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0wfyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plat"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-82, 323)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1234, 323)
+shape = SubResource("RectangleShape2D_jyhfs")
