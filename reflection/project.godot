@@ -14,6 +14,10 @@ config/name="Reflection"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [display]
 
 window/stretch/mode="viewport"

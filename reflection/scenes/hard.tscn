@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bw1gk2j5qj5rj"]
+[gd_scene load_steps=15 format=3 uid="uid://buvgsj4lr5jcc"]
 
-[ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://bhbqdjrcu13dp" path="res://scripts/movement/balls/ball_normal.gd" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://buvgsj4lr5jcc" path="res://scenes/hard.tscn" id="2_tbgi4"]
-[ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_2xu00"]
+[ext_resource type="PackedScene" uid="uid://bw1gk2j5qj5rj" path="res://scenes/main.tscn" id="2_0ef5u"]
+[ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="2_fo8dt"]
+[ext_resource type="Script" uid="uid://bhbqdjrcu13dp" path="res://scripts/movement/balls/ball_normal.gd" id="3_0ef5u"]
+[ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_pbjqc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
 bg_color = Color(0, 0, 0, 1)
@@ -33,7 +33,7 @@ corner_radius_bottom_left = 20
 radius = 20.0998
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tefeu"]
-radius = 23.0
+radius = 21.095
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
 bg_color = Color(0, 0, 0, 1)
@@ -41,12 +41,14 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tipki"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_jyhfs")
-scene_transition = ExtResource("2_tbgi4")
+script = ExtResource("1_2xu00")
+scene_transition = ExtResource("2_0ef5u")
 
 [node name="Plat" type="CharacterBody2D" parent="."]
 position = Vector2(156, 582)
-script = ExtResource("1_o5qli")
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_fo8dt")
 
 [node name="Panel" type="Panel" parent="Plat"]
 anchors_preset = 8
@@ -84,7 +86,9 @@ shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(587, 279)
-script = ExtResource("2_0wfyh")
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_0ef5u")
 
 [node name="Panel" type="Panel" parent="Ball"]
 anchors_preset = 8
@@ -108,6 +112,32 @@ shape = SubResource("CircleShape2D_0wfyh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
 shape = SubResource("CircleShape2D_tefeu")
 
+[node name="Ball2" type="CharacterBody2D" parent="."]
+position = Vector2(180, 237)
+script = ExtResource("3_0ef5u")
+
+[node name="Panel" type="Panel" parent="Ball2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball2"]
+shape = SubResource("CircleShape2D_0wfyh")
+
+[node name="Area2D" type="Area2D" parent="Ball2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball2/Area2D"]
+shape = SubResource("CircleShape2D_tefeu")
+
 [node name="Menu" type="Panel" parent="."]
 offset_left = 863.0
 offset_right = 1153.0
@@ -123,7 +153,7 @@ anchor_bottom = 0.225
 offset_top = -0.184
 offset_right = -1.0
 offset_bottom = 0.199997
-theme_override_fonts/normal_font = ExtResource("4_tbgi4")
+theme_override_fonts/normal_font = ExtResource("4_pbjqc")
 theme_override_font_sizes/normal_font_size = 40
 text = "Reflection 
 in 
@@ -141,7 +171,7 @@ offset_left = 0.0399971
 offset_top = 0.231995
 offset_right = -0.0900269
 offset_bottom = 0.0559845
-theme_override_fonts/normal_font = ExtResource("4_tbgi4")
+theme_override_fonts/normal_font = ExtResource("4_pbjqc")
 theme_override_font_sizes/normal_font_size = 30
 text = "Score: "
 horizontal_alignment = 1
@@ -157,7 +187,7 @@ offset_left = 0.0399971
 offset_top = 31.232
 offset_right = -0.0900269
 offset_bottom = 31.056
-theme_override_fonts/normal_font = ExtResource("4_tbgi4")
+theme_override_fonts/normal_font = ExtResource("4_pbjqc")
 theme_override_font_sizes/normal_font_size = 15
 text = "High Score:"
 horizontal_alignment = 1
@@ -170,15 +200,18 @@ anchor_right = 0.997
 anchor_bottom = 1.0
 offset_top = 0.135986
 offset_right = -0.130005
-theme_override_fonts/font = ExtResource("4_tbgi4")
-text = "Hard Mode"
+theme_override_fonts/font = ExtResource("4_pbjqc")
+text = "Normal Mode"
 
 [node name="World Border" type="Area2D" parent="."]
 position = Vector2(420, 650)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Border"]
 shape = SubResource("WorldBoundaryShape2D_tipki")
 
 [connection signal="body_entered" from="Ball/Area2D" to="Ball" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Ball2/Area2D" to="Ball2" method="_on_area_2d_body_entered"]
 [connection signal="pressed" from="Menu/Scene" to="." method="_on_scene_pressed"]
 [connection signal="body_entered" from="World Border" to="." method="_on_world_border_body_entered"]
