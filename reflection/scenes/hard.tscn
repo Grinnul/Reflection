@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://buvgsj4lr5jcc"]
+[gd_scene load_steps=16 format=3 uid="uid://buvgsj4lr5jcc"]
 
 [ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_2xu00"]
 [ext_resource type="PackedScene" uid="uid://bw1gk2j5qj5rj" path="res://scenes/main.tscn" id="2_0ef5u"]
 [ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="2_fo8dt"]
 [ext_resource type="Script" uid="uid://bhbqdjrcu13dp" path="res://scripts/movement/balls/ball_normal.gd" id="3_0ef5u"]
 [ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_pbjqc"]
+[ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="6_0ef5u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
 bg_color = Color(0, 0, 0, 1)
@@ -210,6 +211,10 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Border"]
 shape = SubResource("WorldBoundaryShape2D_tipki")
+
+[node name="Joystick" parent="." instance=ExtResource("6_0ef5u")]
+visible = false
+position = Vector2(1008, 465)
 
 [connection signal="body_entered" from="Ball/Area2D" to="Ball" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Ball2/Area2D" to="Ball2" method="_on_area_2d_body_entered"]

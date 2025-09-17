@@ -1,9 +1,14 @@
 extends Node2D
 var high = 0
 var points = 0
+var ready_ = false
 @export var scene_transition: PackedScene
 
-
+func _ready():
+	match OS.get_name():
+		"Linux":
+			$Joystick.show()
+			ready_ = true
 
 func _process(delta: float) -> void:
 	$Menu/Score.text = "Score: " + str(points)
