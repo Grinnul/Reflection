@@ -1,10 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://o00hd46n1u5g"]
+[gd_scene load_steps=22 format=3 uid="uid://o00hd46n1u5g"]
 
 [ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_2xu00"]
+[ext_resource type="PackedScene" uid="uid://bw1gk2j5qj5rj" path="res://scenes/main.tscn" id="2_7vrlt"]
 [ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="2_fo8dt"]
 [ext_resource type="Script" uid="uid://bhbqdjrcu13dp" path="res://scripts/movement/balls/ball_normal.gd" id="3_0ef5u"]
+[ext_resource type="Shader" uid="uid://djocs66fky6xv" path="res://assets/menu.gdshader" id="3_eon6t"]
 [ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_pbjqc"]
 [ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="6_0ef5u"]
+[ext_resource type="AudioStream" uid="uid://bvtaatrosd3f3" path="res://assets/hornet_gitgud.mp3" id="6_pbjqc"]
+[ext_resource type="Texture2D" uid="uid://dojf43jigwkao" path="res://assets/fire.png" id="7_pbjqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mun1t"]
+shader = ExtResource("3_eon6t")
+shader_parameter/speed = 0.2
+shader_parameter/color1 = Color(0.6, 0.1, 0.9, 1)
+shader_parameter/color2 = Color(0.1, 0.7, 1, 1)
+shader_parameter/color3 = Color(1, 0.4498405, 0.62418693, 1)
+shader_parameter/color4 = Color(0.85550135, 0.35489485, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
 bg_color = Color(0, 0, 0, 1)
@@ -16,6 +28,9 @@ corner_radius_bottom_left = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
 size = Vector2(313, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eon6t"]
+size = Vector2(313, 40)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
 size = Vector2(288.5, 646)
 
@@ -24,29 +39,51 @@ size = Vector2(863, 82)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5qli"]
 bg_color = Color(1, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+anti_aliasing_size = 0.179
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wfyh"]
 radius = 20.0998
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tefeu"]
-radius = 21.095
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mun1t"]
+radius = 20.0
+height = 50.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tipki"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="Curve" id="Curve_eon6t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Hard" type="Node2D"]
 script = ExtResource("1_2xu00")
+scene_transition = ExtResource("2_7vrlt")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -689.0
+offset_top = -294.0
+offset_right = 1653.0
+offset_bottom = 1029.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mun1t")
+offset_right = 866.0
+offset_bottom = 648.0
 
 [node name="Plat" type="CharacterBody2D" parent="."]
 position = Vector2(156, 582)
-collision_layer = 3
-collision_mask = 3
 script = ExtResource("2_fo8dt")
 
 [node name="Panel" type="Panel" parent="Plat"]
@@ -67,9 +104,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0wfyh")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_sugp2")
 
+[node name="AnimatableBody2D" type="StaticBody2D" parent="Plat"]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plat/AnimatableBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_eon6t")
+debug_color = Color(0.9772505, 0, 0.40924624, 0.41960785)
+
 [node name="Walls" type="StaticBody2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+position = Vector2(1, 0)
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-144.25, 323)
@@ -84,7 +131,7 @@ position = Vector2(431.5, -41)
 shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
-position = Vector2(587, 279)
+position = Vector2(587, 236)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_0ef5u")
@@ -109,10 +156,13 @@ shape = SubResource("CircleShape2D_0wfyh")
 [node name="Area2D" type="Area2D" parent="Ball"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
-shape = SubResource("CircleShape2D_tefeu")
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_mun1t")
 
 [node name="Ball2" type="CharacterBody2D" parent="."]
 position = Vector2(180, 237)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("3_0ef5u")
 
 [node name="Panel" type="Panel" parent="Ball2"]
@@ -135,7 +185,8 @@ shape = SubResource("CircleShape2D_0wfyh")
 [node name="Area2D" type="Area2D" parent="Ball2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball2/Area2D"]
-shape = SubResource("CircleShape2D_tefeu")
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_mun1t")
 
 [node name="Menu" type="Panel" parent="."]
 offset_left = 863.0
@@ -155,8 +206,7 @@ offset_bottom = 0.199997
 theme_override_fonts/normal_font = ExtResource("4_pbjqc")
 theme_override_font_sizes/normal_font_size = 40
 text = "Reflection 
-in 
-Godot"
+in Godot"
 horizontal_alignment = 1
 
 [node name="Score" type="RichTextLabel" parent="Menu"]
@@ -194,27 +244,100 @@ horizontal_alignment = 1
 [node name="Scene" type="Button" parent="Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.918
-anchor_right = 0.997
+anchor_top = 0.91800004
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = 0.135986
-offset_right = -0.130005
+offset_top = 0.13598633
+offset_right = -1.0
 theme_override_fonts/font = ExtResource("4_pbjqc")
 text = "Normal Mode"
 
+[node name="Random" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.836
+anchor_right = 0.497
+anchor_bottom = 0.91800004
+offset_top = 0.27197266
+offset_right = -0.13000488
+offset_bottom = 0.13598633
+theme_override_fonts/font = ExtResource("4_pbjqc")
+text = "Random Mode"
+
+[node name="joystick" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.91800004
+anchor_right = 0.99700004
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 0.13598633
+offset_right = -0.13000488
+theme_override_fonts/font = ExtResource("4_pbjqc")
+text = "Enable Joystick"
+
+[node name="Title2" type="RichTextLabel" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.008
+anchor_right = 1.0
+anchor_bottom = 0.225
+offset_top = 88.816
+offset_right = -1.0
+offset_bottom = -4.800003
+theme_override_fonts/normal_font = ExtResource("4_pbjqc")
+theme_override_font_sizes/normal_font_size = 25
+text = "Hard"
+horizontal_alignment = 1
+
 [node name="World Border" type="Area2D" parent="."]
 position = Vector2(420, 650)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Border"]
 shape = SubResource("WorldBoundaryShape2D_tipki")
 
 [node name="Joystick" parent="." instance=ExtResource("6_0ef5u")]
 visible = false
-position = Vector2(1008, 465)
+position = Vector2(1008, 385)
+
+[node name="Fire" type="Sprite2D" parent="."]
+position = Vector2(431.08844, 622.6138)
+scale = Vector2(2.4333043, 1.463642)
+texture = ExtResource("7_pbjqc")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(430, 665)
+emitting = false
+amount = 2000
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.29
+emission_shape = 3
+emission_rect_extents = Vector2(430, 1)
+gravity = Vector2(0, -980)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_eon6t")
+color = Color(0.9093529, 0.25087127, 1.92523e-07, 1)
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = 648.0
+offset_right = 863.0
+offset_bottom = 1108.0
+color = Color(1, 0.6313726, 0.11372549, 1)
+
+[node name="GidGud" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pbjqc")
 
 [connection signal="body_entered" from="Ball/Area2D" to="Ball" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Ball2/Area2D" to="Ball2" method="_on_area_2d_body_entered"]
 [connection signal="pressed" from="Menu/Scene" to="." method="_on_scene_pressed"]
+[connection signal="pressed" from="Menu/Random" to="." method="_on_random_pressed"]
+[connection signal="pressed" from="Menu/joystick" to="." method="_on_joystick_pressed"]
 [connection signal="body_entered" from="World Border" to="." method="_on_world_border_body_entered"]

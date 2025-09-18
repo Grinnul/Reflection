@@ -9,7 +9,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		velocity = velocity.bounce(collision.get_normal())
+		var bounced = velocity.bounce(collision.get_normal())
+		if abs(collision.get_normal().y) > 0.9 or abs(collision.get_normal().x) > 0.9:
+			bounced = bounced.rotated(randf_range(-0.5, 0.5))
+		velocity = bounced.normalized() * velocity.length()
 	
 
 
