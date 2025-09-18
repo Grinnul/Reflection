@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bw1gk2j5qj5rj"]
+[gd_scene load_steps=21 format=3 uid="uid://bw1gk2j5qj5rj"]
 
 [ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="1_o5qli"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://o00hd46n1u5g" path="res://scenes/hard.tscn" id="2_tipki"]
 [ext_resource type="Shader" uid="uid://djocs66fky6xv" path="res://assets/menu.gdshader" id="3_85g3d"]
 [ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_tbgi4"]
-[ext_resource type="AudioStream" uid="uid://bvtaatrosd3f3" path="res://assets/hornet_gitgud.mp3" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://dojf43jigwkao" path="res://assets/fire.png" id="8_85g3d"]
 
@@ -176,7 +175,7 @@ offset_bottom = 0.199997
 theme_override_fonts/normal_font = ExtResource("4_tbgi4")
 theme_override_font_sizes/normal_font_size = 40
 text = "Reflection 
-in Godot"
+Remake"
 horizontal_alignment = 1
 
 [node name="Score" type="RichTextLabel" parent="Menu"]
@@ -269,9 +268,6 @@ collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Border"]
 shape = SubResource("WorldBoundaryShape2D_tipki")
-
-[node name="GidGud" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_o6xl0")
 
 [node name="Fire" type="Sprite2D" parent="."]
 position = Vector2(431.08844, 622.6138)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://o00hd46n1u5g"]
+[gd_scene load_steps=21 format=3 uid="uid://o00hd46n1u5g"]
 
 [ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_2xu00"]
 [ext_resource type="PackedScene" uid="uid://bw1gk2j5qj5rj" path="res://scenes/main.tscn" id="2_7vrlt"]
@@ -7,7 +7,6 @@
 [ext_resource type="Shader" uid="uid://djocs66fky6xv" path="res://assets/menu.gdshader" id="3_eon6t"]
 [ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_pbjqc"]
 [ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="6_0ef5u"]
-[ext_resource type="AudioStream" uid="uid://bvtaatrosd3f3" path="res://assets/hornet_gitgud.mp3" id="6_pbjqc"]
 [ext_resource type="Texture2D" uid="uid://dojf43jigwkao" path="res://assets/fire.png" id="7_pbjqc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mun1t"]
@@ -206,7 +205,7 @@ offset_bottom = 0.199997
 theme_override_fonts/normal_font = ExtResource("4_pbjqc")
 theme_override_font_sizes/normal_font_size = 40
 text = "Reflection 
-in Godot"
+Remake"
 horizontal_alignment = 1
 
 [node name="Score" type="RichTextLabel" parent="Menu"]
@@ -331,9 +330,6 @@ offset_top = 648.0
 offset_right = 863.0
 offset_bottom = 1108.0
 color = Color(1, 0.6313726, 0.11372549, 1)
-
-[node name="GidGud" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_pbjqc")
 
 [connection signal="body_entered" from="Ball/Area2D" to="Ball" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Ball2/Area2D" to="Ball2" method="_on_area_2d_body_entered"]

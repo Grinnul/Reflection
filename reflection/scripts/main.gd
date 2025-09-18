@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 
 
 func _on_world_border_body_entered(body: Node2D) -> void:
-	$GidGud.play()
 	$CPUParticles2D.emitting = true
 	if body.name == "Ball":
 		$Ball.position = Vector2(587, 279)
@@ -29,7 +28,7 @@ func _on_world_border_body_entered(body: Node2D) -> void:
 			high = points
 		points = 0
 	elif body.name == "Ball2":
-		$Ball2.position = Vector2(587, 279)
+		$Ball2.position = Vector2(180, 237)
 		$Ball2.speed = 400
 		$Ball2._ready()
 		if points > high:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cqsfrshc7s5bi"]
+[gd_scene load_steps=20 format=3 uid="uid://cqsfrshc7s5bi"]
 
 [ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_bhvsk"]
 [ext_resource type="PackedScene" uid="uid://o00hd46n1u5g" path="res://scenes/hard.tscn" id="2_ajy36"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://b833s4m2au85a" path="res://scripts/movement/balls/ball_random.gd" id="5_bhvsk"]
 [ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="6_kbww5"]
 [ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="7_3uybq"]
-[ext_resource type="AudioStream" uid="uid://bvtaatrosd3f3" path="res://assets/hornet_gitgud.mp3" id="8_q8xav"]
 [ext_resource type="Texture2D" uid="uid://dojf43jigwkao" path="res://assets/fire.png" id="9_nuy7a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
@@ -183,13 +182,13 @@ anchors_preset = -1
 anchor_top = 0.008
 anchor_right = 1.0
 anchor_bottom = 0.225
-offset_top = -0.18400002
+offset_top = -1.184
 offset_right = -1.0
-offset_bottom = -46.800003
+offset_bottom = -47.800003
 theme_override_fonts/normal_font = ExtResource("6_kbww5")
 theme_override_font_sizes/normal_font_size = 40
 text = "Reflection 
-in Godot"
+Remake"
 horizontal_alignment = 1
 
 [node name="Title2" type="RichTextLabel" parent="Menu"]
@@ -265,9 +264,6 @@ collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Border"]
 shape = SubResource("WorldBoundaryShape2D_tipki")
-
-[node name="GidGud" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_q8xav")
 
 [node name="Fire" type="Sprite2D" parent="."]
 position = Vector2(431.08844, 622.6138)
