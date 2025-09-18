@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Reflection"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://bw1gk2j5qj5rj"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
 [debug]

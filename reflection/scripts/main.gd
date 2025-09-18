@@ -6,7 +6,7 @@ var ready_ = false
 
 func _ready():
 	match OS.get_name():
-		"Linux":
+		"Android":
 			$Joystick.show()
 			ready_ = true
 

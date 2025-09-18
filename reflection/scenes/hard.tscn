@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://buvgsj4lr5jcc"]
+[gd_scene load_steps=15 format=3 uid="uid://o00hd46n1u5g"]
 
 [ext_resource type="Script" uid="uid://7va3qlbbpfq8" path="res://scripts/main.gd" id="1_2xu00"]
-[ext_resource type="PackedScene" uid="uid://bw1gk2j5qj5rj" path="res://scenes/main.tscn" id="2_0ef5u"]
 [ext_resource type="Script" uid="uid://bqjvyud7t4754" path="res://scripts/movement/player/player.gd" id="2_fo8dt"]
 [ext_resource type="Script" uid="uid://bhbqdjrcu13dp" path="res://scripts/movement/balls/ball_normal.gd" id="3_0ef5u"]
 [ext_resource type="FontFile" uid="uid://dhadurqdgj0so" path="res://assets/Comfortaa-Bold.ttf" id="4_pbjqc"]
@@ -43,7 +42,6 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2xu00")
-scene_transition = ExtResource("2_0ef5u")
 
 [node name="Plat" type="CharacterBody2D" parent="."]
 position = Vector2(156, 582)

@@ -17,4 +17,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Plat":
 		$"..".points += 1
 		speed += 20
-		velocity = Vector2(-100, -100).normalized() * speed
+		velocity = Vector2(velocity.x, velocity.y).normalized() * speed
